@@ -1,0 +1,51 @@
+<h1 class="text-center">Register Form</h1>
+
+<form (ngSubmit)="registerForm.valid && register()" [formGroup]="registerForm">
+
+  <div class="form-group" [ngClass]="{ 'has-danger' : errors.username }">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" id="username" formControlName="username" placeholder="Username">
+
+    <div *ngIf="errors.username" class="form-control-feedback">
+      {{errors.username}}
+    </div>
+  </div>
+
+  <div class="form-group" [ngClass]="{ 'has-danger' : errors.firstName }">
+    <label for="firstName">First Name</label>
+    <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder="First Name">
+
+    <div *ngIf="errors.firstName" class="form-control-feedback">
+      {{errors.firstName}}
+    </div>
+  </div>
+
+  <div class="form-group" [ngClass]="{ 'has-danger' : errors.lastName }">
+    <label for="lastName">Last Name</label>
+    <input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder="Last Name">
+
+    <div *ngIf="errors.lastName" class="form-control-feedback">
+      {{errors.lastName}}
+    </div>
+  </div>
+
+  <div class="form-group" [ngClass]="{ 'has-danger' : errors.password }">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
+
+    <div *ngIf="errors.password" class="form-control-feedback">
+      {{errors.password}}
+    </div>
+  </div>
+
+  <div class="form-group" [ngClass]="{ 'has-danger' : errors.confirm }">
+    <label for="confirm">Confirm Password</label>
+    <input type="password" class="form-control" id="confirm" formControlName="confirm" placeholder="Confirm Password">
+
+    <div *ngIf="errors.confirm" class="form-control-feedback">
+      {{errors.confirm}}
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Submit</button>
+</form>

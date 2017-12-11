@@ -1,0 +1,22 @@
+<h1 class="text-center">Login Form</h1>
+  <form (ngSubmit)="loginForm.valid && login()" [formGroup]="loginForm">
+    <div class="form-group" [ngClass]="{ 'has-danger' : errors.username }">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" id="username" formControlName="username" placeholder="Username">
+
+      <div *ngIf="errors.username" class="form-control-feedback">
+        {{errors.username}}
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-danger' : errors.password }">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
+
+      <div *ngIf="errors.password" class="form-control-feedback">
+        {{errors.password}}
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
+  </form>
