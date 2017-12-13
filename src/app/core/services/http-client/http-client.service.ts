@@ -4,7 +4,6 @@ import { catchError } from 'rxjs/operators'
 import { Observable } from "rxjs/Rx";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { APP_KEY, APP_SECRET } from './../../config/kinvey.config'
-import { HttpService } from '../http-service/http.service';
 import { RequestOptions } from '@angular/http';
 import { Headers } from '@angular/http';
 
@@ -17,7 +16,7 @@ export class HttpClientService {
 
   public get<T>(url: string, type: string) {
     return this.http
-      .get(url, { headers: this.createHeaders(type) })
+      .get<T>(url, { headers: this.createHeaders(type) })
       .pipe(
       catchError(err => this.handleError(err))
       )
@@ -25,7 +24,7 @@ export class HttpClientService {
 
   public post<T>(url: string, body: any, type: string) {
   return this.http
-      .post( url, JSON.stringify(body), {headers: this.createHeaders(type)})
+      .post<T>( url, JSON.stringify(body), {headers: this.createHeaders(type)})
       .pipe(
       catchError(err => this.handleError(err)))
   }
@@ -42,7 +41,7 @@ export class HttpClientService {
 
   public delete<T>(url: string, id: number, type: string) {
     return this.http
-      .delete<T>(`${url}/${id}`, { headers: this.createHeaders(type) })
+      .delete<T>(`${url}${id}`, { headers: this.createHeaders(type) })
       .pipe(
       catchError(err => this.handleError(err))
       )

@@ -8,6 +8,7 @@ import { allServices } from './index';
     ],
     imports: [
         CommonModule
-    ]
+    ],
+    declarations: []
 })
 export class ServiceModule { }

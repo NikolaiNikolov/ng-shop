@@ -9,8 +9,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/pages/home/home.component';
 import { NotFoundComponent } from './components/pages/error/not-found/not-found.component';
-import { NavbarComponent } from './components/shared/navbar/navbar.component';
-import { FooterComponent } from './components/shared/footer/footer.component';
+
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/pages/auth/login/login.component';
@@ -21,16 +20,22 @@ import { ServiceModule } from './core/services/services.module';
 import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { SharedModule } from './components/shared/shared.module';
+import { PostDetailsComponent } from './components/pages/post-details/post-details.component';
+import { CreatePostComponent } from './components/pages/create-post/create-post.component';
+import { AuthGuard } from './core/guards/auth/auth.guard';
+
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NotFoundComponent,
-    NavbarComponent,
-    FooterComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PostDetailsComponent,
+    CreatePostComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,10 +49,13 @@ import { HttpModule } from '@angular/http';
     HttpClientModule,
     ServiceModule,
     HttpModule,
-    NgProgressModule
+    NgProgressModule,
+    SharedModule,
+    NgxPaginationModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true }    
+    { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true },
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

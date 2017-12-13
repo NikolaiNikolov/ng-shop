@@ -1,4 +1,4 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component, ViewContainerRef, Output, EventEmitter } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr';
 import { AuthenticationService } from './core/services/authentication/authentication.service';
 
@@ -9,7 +9,7 @@ import { AuthenticationService } from './core/services/authentication/authentica
 })
 export class AppComponent {
   title = 'app';
-
+  
   constructor(
     private toastr: ToastsManager,
     vcr: ViewContainerRef,

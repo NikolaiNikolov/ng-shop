@@ -1,0 +1,7 @@
+.my-pagination /deep/ .ngx-pagination .current {
+    margin: auto;    
+}
+
+.center-block {
+    text-align:center
+}

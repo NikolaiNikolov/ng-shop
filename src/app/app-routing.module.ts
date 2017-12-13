@@ -4,10 +4,15 @@ import { NotFoundComponent } from './components/pages/error/not-found/not-found.
 import { HomeComponent } from './components/pages/home/home.component';
 import { LoginComponent } from './components/pages/auth/login/login.component';
 import { RegisterComponent } from './components/pages/auth/register/register.component';
+import { PostDetailsComponent } from './components/pages/post-details/post-details.component';
+import { CreatePostComponent } from './components/pages/create-post/create-post.component';
+import { AuthGuard } from './core/guards/auth/auth.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'home', component: HomeComponent },
+  { path: 'post/:id', canActivate: [ AuthGuard ], component: PostDetailsComponent },
+  { path: 'create', canActivate: [ AuthGuard ], component: CreatePostComponent },
+  { path: 'home', canActivate: [ AuthGuard ], component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },  
   { path: '**', component: NotFoundComponent }
