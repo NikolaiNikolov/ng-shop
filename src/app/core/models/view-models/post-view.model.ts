@@ -12,4 +12,8 @@ export class PostViewModel {
     get author() {
         return this.authorId;
     }
+
+    get postId() {
+        return this.id;
+    }
 }

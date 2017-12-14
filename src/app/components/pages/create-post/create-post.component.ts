@@ -3,6 +3,8 @@ import { FormBuilder } from '@angular/forms';
 import { PostInputModel } from '../../../core/models/input-models/post-input.model';
 import { PostService } from '../../../core/services/post.service';
 import { Router } from '@angular/router';
+import { CategoriesViewModel } from '../../../core/models/view-models/categories-view.model';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-post',
@@ -12,6 +14,7 @@ import { Router } from '@angular/router';
 export class CreatePostComponent implements OnInit {
   createPostForm;
   errors = {};
+  categories : CategoriesViewModel[];
 
   constructor(
     private fb: FormBuilder,
@@ -21,10 +24,15 @@ export class CreatePostComponent implements OnInit {
 
   ngOnInit() {
     this.createPostForm = this.fb.group({
-      title: "",
-      content: "",
-      image: "",
-      category: ""
+      title: ["", [ Validators.required ] ],
+      content: ["", [ Validators.required] ],
+      image: ["", [ Validators.required ] ],
+      category: ["", [ Validators.required ] ]
+    });
+
+    this.postService.getAllCategories()
+    .subscribe(categories => {
+      this.categories = categories;
     })
   }
 

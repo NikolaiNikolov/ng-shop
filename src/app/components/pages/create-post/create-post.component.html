@@ -19,11 +19,12 @@
     <div class="form-group" [ngClass]="{ 'has-danger' : errors.category }">
         <label for="category">Category</label>
         <select class="form-control" id="category" formControlName="category">
-          <option value="testv" selected>faflfa</option>
-          <option value="sokv">sok</option>
+            <option disabled selected value>Select a category</option>                
+            <option *ngFor="let category of categories" value="{{category.id}}">
+              {{category.name}}
+            </option>        
         </select>
     </div>
 
     <input type="submit" value="Create Post" class="btn btn-primary" [disabled]="!createPostForm.valid">
-
 </form>

@@ -1,6 +1,13 @@
 export class CommentViewModel {
     constructor(
-        private author,
-        private content : string
+        public id : string,
+        public author,
+        private postId : string,
+        private content : string,
+        private createdOn : string,
     ) {  }
+
+    get commentId() {
+        return this.id;
+    }
 }

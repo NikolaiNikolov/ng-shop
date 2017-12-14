@@ -9,6 +9,7 @@ import { Subject } from 'rxjs/Subject';
 import { Router } from '@angular/router';
 import { CommentService } from '../../../core/services/comment/comment.service';
 import { CommentViewModel } from '../../../core/models/view-models/comment-view.model';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-post-details',
@@ -20,7 +21,8 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   private author : UserViewModel;
   private ngUnsubscribe = new Subject();
   private isAuthor : boolean = false;
-  comments;
+  p: number = 1;  
+  comments : CommentViewModel[];
   @Output() public commentAdded:EventEmitter<any> = new EventEmitter<any>();
   
   constructor(
@@ -28,7 +30,8 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     private postService : PostService,
     private authService : AuthenticationService,
     private router : Router,
-    private commentService : CommentService
+    private commentService : CommentService,
+    private toastr : ToastsManager
   ) { }
 
   ngOnInit() {
@@ -71,7 +74,14 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   }
 
   commentRecieved(recievedComment) {
-    this.comments.push(recievedComment);
+    this.comments.unshift(recievedComment);
+  }
+
+  deletedComment(commentId) {
+    this.comments = this.comments.filter(c => {
+      return c.id !== commentId;
+    });
+    this.toastr.success("Comment successfully deleted!", "Success");    
   }
 
   ngOnDestroy(): void {

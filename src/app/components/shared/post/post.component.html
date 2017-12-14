@@ -2,9 +2,11 @@
     <div class="card" style="width: 20rem;">
         <img class="card-img-top" src="{{post?.image}}" alt="Card image cap">
         <div class="card-block">
-          <h4 class="card-title">{{post?.title}}</h4>
+          <div class="card-title-div">
+            <h4 class="card-title">{{post?.title}}</h4>
+          </div>
           <div class="card-text-div">
-              <p class="card-text">{{post?.content | summary }}</p>
+              <p class="card-text">{{post?.content | summary : "100" }}</p>
           </div>
           <a class="btn btn-primary" routerLink="/post/{{post?.id}}">View Details</a>
         </div>

@@ -7,7 +7,7 @@
     <!-- Author -->
     <p class="lead">
       by
-      <a href="#">{{author?.username}}</a>
+      <strong>{{author?.username}}</strong>
       <button *ngIf="isAuthor" class="btn btn-danger btn-controll" (click)="deletePost(post?.id)">&#10008;</button>        
       <button *ngIf="isAuthor" class="btn btn-success btn-controll">&#9998;</button>
     </p>
@@ -28,8 +28,8 @@
     <hr>
     
     <comment-form (commentAdded)="commentRecieved($event)" [postId]="post?.id"></comment-form>
-    <comment *ngFor="let comment of comments" [comment]="comment"></comment>
-
+    <comment (commentIsDeleted)="deletedComment($event)" *ngFor="let comment of comments | paginate: { itemsPerPage: 5, currentPage: p }" [comment]="comment"></comment>
+    <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>    
   </div>
   <!-- <div class="col-md-4">
     <sidebar></sidebar>

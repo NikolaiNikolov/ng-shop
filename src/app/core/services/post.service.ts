@@ -3,8 +3,10 @@ import { HttpClientService } from './http-client/http-client.service';
 import { APP_KEY } from '../config/kinvey.config';
 import { PostViewModel } from '../models/view-models/post-view.model';
 import { Observable } from 'rxjs/Observable';
+import { CategoriesViewModel } from '../models/view-models/categories-view.model';
 
 const allPostsUrl = `https://baas.kinvey.com/appdata/${APP_KEY}/posts/`;
+const allCategoriesUrl = `https://baas.kinvey.com/appdata/${APP_KEY}/categories/`;
 
 @Injectable()
 export class PostService {
@@ -37,6 +39,30 @@ export class PostService {
 
   deletePost(id) {
     return this.http.delete(allPostsUrl, id, 'Kinvey');
+  }
+
+  getUserPosts(userId) {
+    return this.http.get(`${allPostsUrl}?query={"_acl.creator":"${userId}"}`, "Kinvey")
+    .map(posts => {
+      let postViewModels = [];
+      for (let post of posts) {
+        postViewModels.push(this.makeViewModel(post));
+      }
+      
+      return postViewModels;
+    });
+  }
+
+  getAllCategories() {
+    return this.http.get(allCategoriesUrl, "Kinvey")
+    .map(categories => {
+      let categoriesModels = [];
+      for (let category of categories) {
+        categoriesModels.push(new CategoriesViewModel(category._id, category.name))
+      }
+
+      return categoriesModels;
+    })
   }
 
   makeViewModel(kinveyData) {

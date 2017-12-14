@@ -1,4 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { CommentViewModel } from '../../../core/models/view-models/comment-view.model';
+import { CommentService } from '../../../core/services/comment/comment.service';
+import { EventEmitter } from '@angular/core';
+import { AuthenticationService } from '../../../core/services/authentication/authentication.service';
 
 @Component({
   selector: 'comment',
@@ -6,11 +10,21 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./comment.component.css']
 })
 export class CommentComponent implements OnInit {
-  @Input() comment;
+  @Input() comment : CommentViewModel;
+  @Output() public commentIsDeleted : EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() { }
+  constructor(
+    private commentService : CommentService,
+    private authService : AuthenticationService
+  ) { }
 
   ngOnInit() {
   }
 
+  deleteComment(id) {
+    this.commentService.deleteComment(id)
+    .subscribe(r => {
+      this.commentIsDeleted.emit(this.comment.commentId);
+    })
+  }
 }

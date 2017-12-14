@@ -4,6 +4,7 @@ import { HttpClientService } from '../http-client/http-client.service';
 import { APP_KEY } from '../../config/kinvey.config';
 import { RegisterInputModel } from '../../models/input-models/register.input.model';
 import { UserViewModel } from '../../models/view-models/user-view.model';
+import { CommentViewModel } from '../../models/view-models/comment-view.model';
 
 const registerUrl = `https://baas.kinvey.com/user/${APP_KEY}/`;
 const loginUrl = `https://baas.kinvey.com/user/${APP_KEY}/login`;
@@ -32,6 +33,10 @@ export class AuthenticationService {
   
   isAuthor(post) {
     return post.authorId === localStorage.getItem('userId');
+  }
+
+  isCommentAuthor(comment : CommentViewModel) {
+    return comment.author._id === localStorage.getItem('userId');
   }
 
   isLoggedIn() {

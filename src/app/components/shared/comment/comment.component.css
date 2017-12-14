@@ -1,0 +1,16 @@
+.profile-pic {
+    height: 50px;
+    width: 50px;
+}
+
+.comment-date {
+    font-size: 15px;
+    color: gray;
+}
+
+.delete-btn {
+    cursor: pointer;
+    color: red;
+    font-style: italic;
+    font-size: 15px;    
+}

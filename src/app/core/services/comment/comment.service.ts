@@ -14,11 +14,33 @@ export class CommentService {
   ) { }
 
   getComments(postId) {
-    return this.http.get(`${commentsUrl}?query={"postId":"${postId}"}`, 'Kinvey');
+    return this.http.get(`${commentsUrl}?query={"postId":"${postId}"}&sort={"_kmd.lmt": -1}`, 'Kinvey')
+    .map(comments => {
+      let commentsModels = [];
+      for (let comment of comments) {
+
+        commentsModels.push(new CommentViewModel(comment._id, comment.author, comment.postId, comment.content, comment._kmd.lmt));
+      }
+      return commentsModels;
+    });
   }
 
-  postComment(commentModel : CommentInputModel) {
-    
+  getUserComments(userId) {
+    return this.http.get(`${commentsUrl}?query={"_acl.creator":"${userId}"}`, 'Kinvey')
+    .map(comments => {
+      let commentsModels = [];
+      for (let comment of comments) {
+        commentsModels.push(new CommentViewModel(comment._id, comment.author, comment.postId, comment.content, comment._kmd.lmt));
+      }
+      return commentsModels;
+    });
+  }
+
+  postComment(commentModel : CommentInputModel) {    
     return this.http.post(commentsUrl, commentModel, 'Kinvey');
+  }
+
+  deleteComment(id) {
+    return this.http.delete(commentsUrl, id, "Kinvey");
   }
 }
