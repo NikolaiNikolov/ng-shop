@@ -1,10 +1,13 @@
 .post-img {
-    width: 1200px;
+    width: 1100px;
     height: 300px;
     overflow: hidden;
     object-fit: cover;
+    border: 1px solid gray;
 }
 
 .btn-controll {
-    float: right
+    float: right;
+    margin: 5px;
+    cursor: pointer;
 }

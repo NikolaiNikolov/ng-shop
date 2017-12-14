@@ -6,7 +6,7 @@ import { SummaryPipeModule } from '../../core/pipes/summary/summary-pipe.module'
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-    imports: [ CommonModule, RouterModule, SummaryPipeModule, FormsModule ],
+    imports: [ CommonModule, RouterModule, FormsModule ],
     declarations: [
         ...SharedComponents,
     ],

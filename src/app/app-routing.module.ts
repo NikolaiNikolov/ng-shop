@@ -10,11 +10,11 @@ import { AuthGuard } from './core/guards/auth/auth.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'post/:id', canActivate: [ AuthGuard ], component: PostDetailsComponent },
-  { path: 'create', canActivate: [ AuthGuard ], component: CreatePostComponent },
-  { path: 'home', canActivate: [ AuthGuard ], component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },  
+  { path: 'post/:id', canActivate: [ AuthGuard ], loadChildren: 'app/components/pages/post-details/post-details.module#PostDetailsModule' },
+  { path: 'create', canActivate: [ AuthGuard ], loadChildren: 'app/components/pages/create-post/create-post.module#CreatePostModule' },
+  { path: 'home', canActivate: [ AuthGuard ], loadChildren: 'app/components/pages/home/home.module#HomeModule' },
+  { path: 'login', loadChildren: 'app/components/pages/auth/login/login.module#LoginModule' },
+  { path: 'register', loadChildren: 'app/components/pages/auth/register/register.module#RegisterModule' },  
   { path: '**', component: NotFoundComponent }
 ];
 

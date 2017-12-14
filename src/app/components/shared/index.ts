@@ -5,4 +5,4 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { CommentComponent } from './comment/comment.component';
 import { CommentFormComponent } from './comment-form/comment-form.component';
 
-export const SharedComponents = [CommentFormComponent,FooterComponent, NavbarComponent, PostComponent, SidebarComponent, CommentComponent];
+export const SharedComponents = [FooterComponent, NavbarComponent, SidebarComponent];

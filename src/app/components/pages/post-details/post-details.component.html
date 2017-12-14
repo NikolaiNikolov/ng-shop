@@ -8,8 +8,8 @@
     <p class="lead">
       by
       <a href="#">{{author?.username}}</a>
-      <button *ngIf="isAuthor" class="btn btn-success btn-controll">Edit</button>
-      <button *ngIf="isAuthor" class="btn btn-danger btn-controll" (click)="deletePost(post?.id)">Delete</button>  
+      <button *ngIf="isAuthor" class="btn btn-danger btn-controll" (click)="deletePost(post?.id)">&#10008;</button>        
+      <button *ngIf="isAuthor" class="btn btn-success btn-controll">&#9998;</button>
     </p>
 
     <hr>
