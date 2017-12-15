@@ -1,12 +1,12 @@
 export class PostViewModel {
     constructor(
         private id: string,
-        private title: string,
-        private content: string,
-        private categoryId: string,
-        private image: string,
-        private createdOn: Date,
-        private authorId: string
+        public title: string,
+        public content: string,
+        public categoryId: string,
+        public image: string,
+        public createdOn: Date,
+        public authorId: string
     ) {  }
 
     get author() {

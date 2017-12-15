@@ -6,6 +6,7 @@ import { CommentFormComponent } from '../../shared/comment-form/comment-form.com
 import { CommentComponent } from '../../shared/comment/comment.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { EditPostComponent } from '../edit-post/edit-post.component';
 
 @NgModule({
     declarations: [PostDetailsComponent, CommentFormComponent, CommentComponent],

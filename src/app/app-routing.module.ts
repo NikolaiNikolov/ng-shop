@@ -11,11 +11,12 @@ import { AuthGuard } from './core/guards/auth/auth.guard';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'post/:id', canActivate: [ AuthGuard ], loadChildren: 'app/components/pages/post-details/post-details.module#PostDetailsModule' },
-  { path: 'create', canActivate: [ AuthGuard ], loadChildren: 'app/components/pages/create-post/create-post.module#CreatePostModule' },
-  { path: 'home', canActivate: [ AuthGuard ], loadChildren: 'app/components/pages/home/home.module#HomeModule' },
-  { path: 'profile', canActivate: [ AuthGuard ], loadChildren: 'app/components/pages/profile/profile.module#ProfileModule' },  
-  { path: 'login', loadChildren: 'app/components/pages/auth/login/login.module#LoginModule' },
-  { path: 'register', loadChildren: 'app/components/pages/auth/register/register.module#RegisterModule' }, 
+  { path: 'edit/:id', loadChildren: 'app/components/pages/edit-post/edit-post.module#EditPostModule' },
+  { path: 'create', pathMatch: 'full', canActivate: [ AuthGuard ], loadChildren: 'app/components/pages/create-post/create-post.module#CreatePostModule' },
+  { path: 'home', pathMatch: 'full', canActivate: [ AuthGuard ], loadChildren: 'app/components/pages/home/home.module#HomeModule' },
+  { path: 'profile', pathMatch: 'full', canActivate: [ AuthGuard ], loadChildren: 'app/components/pages/profile/profile.module#ProfileModule' },  
+  { path: 'login', pathMatch: 'full', loadChildren: 'app/components/pages/auth/login/login.module#LoginModule' },
+  { path: 'register', pathMatch: 'full', loadChildren: 'app/components/pages/auth/register/register.module#RegisterModule' }, 
   { path: '**', component: NotFoundComponent }
 ];
 

@@ -16,7 +16,7 @@ export class PostService {
   ) { }
 
   getAllPosts() : Observable<any> {
-    return this.http.get(allPostsUrl, 'Kinvey')
+    return this.http.get(`${allPostsUrl}?query={}&sort={"_kmd.lmt": -1}`, 'Kinvey')
     .map(posts => {
     let postModels = [];
     for (let post of posts) {
@@ -35,6 +35,10 @@ export class PostService {
 
   createPost(body) {
     return this.http.post(allPostsUrl, body, 'Kinvey');
+  }
+
+  editPost(id, body) {
+    return this.http.put(allPostsUrl + id, body, "Kinvey");
   }
 
   deletePost(id) {

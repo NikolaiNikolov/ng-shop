@@ -9,7 +9,7 @@
       by
       <strong>{{author?.username}}</strong>
       <button *ngIf="isAuthor" class="btn btn-danger btn-controll" (click)="deletePost(post?.id)">&#10008;</button>        
-      <button *ngIf="isAuthor" class="btn btn-success btn-controll">&#9998;</button>
+      <button *ngIf="isAuthor" class="btn btn-success btn-controll" routerLink="/edit/{{post?.id}}">&#9998;</button>
     </p>
 
     <hr>

@@ -1,12 +1,13 @@
 <!-- Page Heading -->
-<h1 class="my-4">Page Heading
-  <small>Secondary Text</small>
+<h1 class="my-4 text-center">Latest Blog Posts
 </h1>
+<hr>
 
 <div class="row">
   <post *ngFor="let post of posts | paginate: { itemsPerPage: 3, currentPage: p }" [post]="post"></post>
 
 </div>
+<hr>
 <div class="center-block">
   <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>        
 </div>

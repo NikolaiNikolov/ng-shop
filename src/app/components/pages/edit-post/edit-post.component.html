@@ -1,8 +1,8 @@
 <h1>Create Post</h1>
-<form (ngSubmit)="createPostForm.valid && createPost()" [formGroup]="createPostForm">
+<form (ngSubmit)="editPost()" #editPostForm="ngForm">
     <div class="form-group" [ngClass]="{ 'has-danger' : errors.title }">
         <label for="title">Title</label>
-        <input type="text" class="form-control" id="title" formControlName="title" placeholder="Title">        
+        <input type="text" class="form-control" name="title" placeholder="Title" required [(ngModel)]="model.title" #title="ngModel">        
 
         <div *ngIf="errors.title" class="form-control-feedback">
             {{errors.title}}
@@ -11,7 +11,8 @@
 
     <div class="form-group" [ngClass]="{ 'has-danger' : errors.content }">
         <label for="content">Content</label>
-        <textarea class="form-control" id="content" formControlName="content" placeholder="Content">
+        <textarea class="form-control" name="content" required [(ngModel)]="model.content" #content="ngModel">
+            {{post?.content}}
         </textarea>   
 
         <div *ngIf="errors.content" class="form-control-feedback">
@@ -21,7 +22,7 @@
 
     <div class="form-group" [ngClass]="{ 'has-danger' : errors.image }">
         <label for="image">Banner</label>
-        <input type="text" class="form-control" id="image" formControlName="image" placeholder="Image">     
+        <input type="text" class="form-control" name="image" required [(ngModel)]="model.image" #image="ngModel">     
         
         <div *ngIf="errors.image" class="form-control-feedback">
             {{errors.image}}
@@ -30,9 +31,8 @@
 
     <div class="form-group" [ngClass]="{ 'has-danger' : errors.category }">
         <label for="category">Category</label>
-        <select class="form-control" id="category" formControlName="category">
-            <option disabled selected value>Select a category</option>                
-            <option *ngFor="let category of categories" value="{{category.id}}">
+        <select class="form-control" id="category">
+            <option *ngFor="let category of categories" value="{{category.id}}" ng-selected="selected">
               {{category.name}}
             </option>        
         </select>
@@ -42,5 +42,5 @@
         </div>
     </div>
 
-    <input type="submit" value="Create Post" class="btn btn-primary" [disabled]="!createPostForm.valid">
+    <input type="submit" value="Create Post" class="btn btn-primary" [disabled]="!editPostForm.valid">
 </form>

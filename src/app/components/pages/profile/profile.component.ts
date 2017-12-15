@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   posts : PostViewModel[];
   comments : CommentViewModel[];
   userId = localStorage.getItem('userId');
+  username = localStorage.getItem('username');
 
   constructor(
     private postService : PostService,

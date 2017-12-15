@@ -1,27 +1,29 @@
 <h1>Your posts:</h1>
 <!-- Project One -->
-<div *ngFor="let post of posts">
+<div *ngFor="let post of posts | paginate: { itemsPerPage: 2, currentPage: p }">
     <div class="row">
         <div class="col-md-7">
            <img class="img-fluid rounded mb-3 mb-md-0" src="{{post?.image}}" alt="">
         </div>
         <div class="col-md-5">
-          <h3>Project One</h3>
+          <h3>{{post?.title}}</h3>
           <p>{{post?.content | summary : "600"}}</p>
           <a class="btn btn-primary" routerLink="/post/{{post?.id}}">View Post</a>
-          <button class="btn btn-success btn-controll">&#9998;</button>              
+          <button class="btn btn-success btn-controll" routerLink="/edit/{{post?.id}}">&#9998;</button>              
           <button class="btn btn-danger btn-controll" (click)="deletePost(post?.id)">&#10008;</button>        
         </div>
       </div>
       <!-- /.row -->   
       <hr>      
 </div>
-
+<div class="center-block">    
+<pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>    
+</div>
 <h1>Your comments:</h1>
 
 <blockquote *ngFor="let comment of comments" class="blockquote">
   <p class="mb-0">{{comment.content}}</p>
-  <footer class="blockquote-footer">You in
-    <cite title="Source Title">Source Title</cite>
+  <footer class="blockquote-footer">{{username}}
+    <!-- <cite title="Source Title">Source Title</cite> -->
   </footer>
 </blockquote>

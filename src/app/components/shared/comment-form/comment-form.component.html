@@ -3,11 +3,13 @@
     <div class="card my-4">
         <h5 class="card-header">Leave a Comment:</h5>
         <div class="card-body">
-          <form #commentForm="ngForm" (ngSubmit)="submitComment()">
+          <form #commentForm="ngForm" (ngSubmit)="commentForm.form.valid && submitComment()">
             <div class="form-group">
-              <textarea name="content" [(ngModel)]="commentModel.content" class="form-control" rows="3"></textarea>
+              <textarea name="content" [(ngModel)]="commentModel.content" class="form-control" rows="3" required>
+
+              </textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!commentForm.form.valid">Submit</button>
           </form>
         </div>
       </div>

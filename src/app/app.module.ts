@@ -22,12 +22,12 @@ import { SharedModule } from './components/shared/shared.module';
 import { AuthGuard } from './core/guards/auth/auth.guard';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './components/pages/profile/profile.component';
+import { EditPostComponent } from './components/pages/edit-post/edit-post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent
-    
   ],
   imports: [
     BrowserModule,
